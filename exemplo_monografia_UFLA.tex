@@ -1,0 +1,268 @@
+\documentclass{uflamon}          % classe base para a monografia
+
+%==============================================================================
+% Utilizacao de pacotes
+\usepackage{float}
+\usepackage[T1]{fontenc}         % usa fontes postscript com acentos
+\usepackage[brazil]{babel}       % hifenização e títulos em português do Brasil
+\usepackage[utf8]{inputenc}     % permite edição direta com acentos
+\usepackage{amsmath}             % pacote da AMS para Matemática Avançada
+\usepackage{amssymb}             % símbolos extras da AMS
+\usepackage{latexsym}            % símbolos extras do LaTeX
+\usepackage{graphicx}            % para inserção de gráficos
+\usepackage{listings}            % para inserção de código
+\usepackage{fancyvrb}            % para inserção de saídas de comandos
+%\usepackage{enumerate}           % para personalizar lista enumeradas 
+											%(incluso na classe)
+\usepackage{longtable}           % para tambelas muito grandes NOVO!!!!
+
+\usepackage{colortbl} % cores em tabelas
+\newcolumntype{Z}{|>{\columncolor[gray]{0.9}}l|} %cor cinza em células
+%\usepackage{array} % já incluso na classe
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage{multirow} % para juntar duas linhas em uma só
+
+\usepackage{multicol} % para uso de várias colunas
+
+% cores para os links cruzados
+\usepackage{color}
+\definecolor{rltred}{rgb}{0.2,0,0}
+\definecolor{rltgreen}{rgb}{0,0.2,0}
+\definecolor{rltblue}{rgb}{0,0,0.2}
+
+\usepackage[colorlinks=true,
+            urlcolor=rltblue,       % \href{...}{...} external (URL)
+            filecolor=rltgreen,     % \href{...} local file
+            linkcolor=rltred,       % \ref{...} and \pageref{...}
+            citecolor=rltgreen,
+            pdftitle={Exemplo de Uso da Classe Uflamon},
+          pdfauthor={Joaquim Quinteiro Uchôa},
+          pdfsubject={Este texto tem por objetivo servir de exemplo da classe Uflamon.},
+          pdfkeywords={Comunicação Científica. 2. Pesquisa . 3. Pesquisa Científica. 
+ 					 4. Redação. 5. Monografia.}%
+]{hyperref} % para referência cruzadas
+%\usepackage{hyperref}            % para referência cruzadas
+\usepackage{subfigure}           % figuras dentro de figuras
+\usepackage{caption}            % remodelando o formato dos títulos de 
+                                 % tabelas e figuras
+
+% configuração padrão do listings   
+\lstset{
+   language=Java,
+   extendedchars=true,
+   tabsize=3,
+   basicstyle=\footnotesize\ttfamily,
+   stringstyle=\em,
+   showstringspaces=false 
+}
+
+% para referências de acordo com a ABNT
+% precisa instalar o abntex2 antes!!!
+% http://abntex.codigolivre.org.br/
+% comente se pretende usar outro padrão
+
+%abnt-emphasize=bf coloca o título das bibliografias em negrito
+%abnt-thesis-year=both
+\usepackage[alf,abnt-etal-cite=3,abnt-etal-list=3,abnt-url-package=url,abnt-emphasize=bf]{abntex2cite}
+
+% evite usar o hyperref com abntex, pode dar caca em urls... no linha anterior, informo
+% para incluir urls usando o pacote url e não o hyperref
+%
+% caso queira o hyperref com abntex, comente a linha anterior e descomente a seguinte
+%\usepackage[alf,abnt-etal-cite=3,abnt-etal-list=0,abnt-etal-text=emph]{abntex2cite}
+%
+% caso vc ainda use a versão anterior da abntex, comente a linha incluindo o abntex2cite
+% e descomente a próxima linha 
+%\usepackage[alf,abnt-etal-cite=3,abnt-etal-list=0,abnt-etal-text=emph]{abntcite}
+
+
+% redefinindo formatação de títulos de tabelas e figuras
+
+
+%==============================================================================
+% para os fãs do Word, descomente as linhas abaixo
+%\sloppy %mais espaço entre as linhas
+%\usepackage{identfirst} %identando-se a primeira linha de cada seção
+%\noindentfirst % Tire o comentário para manter o padrão do LaTeX.
+
+%==============================================================================
+% definido comandos na monografia - não é necessário na sua monografia 
+% apenas para exemplificar a definição de novos comandos
+\newcommand{\defs}[1]{\textsl{#1}}
+
+
+% Especificando hifenizações que por ventura LaTeX não saiba fazer
+% Por padrão 99,9% dos termos em português devem ser hifenizados corretamente.
+\hyphenation{hardware software Li-nux am-bien-te diag-nos-ti-car coor-de-na-ção 
+FAE-PE Recovery TelEduc Williams UFLA}
+
+%==============================================================================
+% Dados da monografia, capa: autor, titulo, banca, etc... - SUBSTITUA DE ACORDO
+%==============================================================================
+\author{Lucas Fonseca dos Santos}
+\title{Análise da viabilidade da aplicação de soluções em processamento de línguas naturais para idioma português.}
+%\subtitle{Relatório Final}
+%\engtitle{Relatório Final}
+%\engsubtitle{Sample for Users}
+\edicao{Programa  Voluntário de  Iniciação  Científica  (PVIC).}
+\date{2018}
+\tipo{Relatório de projeto do Programa Voluntário de Iniciação Científica (PVIC) apresentado a Universidade Federal de Lavras (UFLA).}
+% use \orientador ou \orientadora quando for o caso
+%\orientador{}
+\orientadora{Prof. Juliana Galvani Greghi}
+% use \coorientador ou \coorientadora quando for o caso
+%\coorientadora{Prof. DSc. Maria Orientadora } % comente se não tiver coorientador
+%\coorientador{}
+\local{Lavras -- MG}
+%\bancaum{Prof. MSc. Antônio Banca Um}{UFM}
+%\bancadois{Prof. DSc. João Banca Dois}{FCO} % comente se sua banca tiver só um professor
+%\bancatres{Profa. Esp. Eliza Banca Três}{BELMIS}
+%\bancaquatro{Prof. Esp. Carlos Banca Quatro}{IBGPLUS}
+%\defesa{30 de Fevereiro de 2016}
+%==============================================================================
+
+%\antesfichacat{\noindent Para citar este documento: \\UNIVERSIDADE FEDERAL DE LAVRAS. Biblioteca Universitária. \textbf{Manual de normalização e estrutura de trabalhos acadêmicos: TCC, monografias, dissertações e teses}. 2. ed. rev., atual. e ampl. Lavras, 2015. Disponível em: \url{http://www.biblioteca.ufla.br/wordpress/wpcontent/uploads/bdtd/manual_normalizacao_UFLA.pdf}. Acesso em: data de acesso.}
+
+%\depoisfichacat{\noindent A reprodução e a divulgação total ou parcial deste trabalho são autorizadas, por qualquer meio convencional ou eletrônico, para fins de estudo e pesquisa, desde que citada a fonte.\\
+%\newline
+%{\small Este documento possui páginas em branco para facilitar a impressão frente-e-verso.}}
+
+%##################################################
+
+%##################################################
+
+% para os exemplos do manual
+%\newenvironment{exemplomanual}{
+%\vspace{0.5cm}
+%\noindent\begin{minipage}{\textwidth}
+%\noindent\rule{\textwidth}{0.5pt}
+%\vspace{-1cm}
+%\begin{flushleft}
+%}{
+%\end{flushleft}
+%\vspace{-0.6cm}
+%\noindent\rule{\textwidth}{0.5pt}
+%\vspace{0.3cm}
+%\end{minipage}
+%}
+
+%\newenvironment{exemplomanuallista}{
+%\vspace{0.3cm}
+%\noindent\begin{minipage}{\textwidth - 0.5cm}
+%\noindent\rule{\textwidth}{0.5pt}
+%\vspace{-1cm}
+%\begin{flushleft}
+%}{
+%\end{flushleft}
+%\vspace{-0.6cm}
+%\noindent\rule{\textwidth}{0.5pt}
+%\vspace{0.3cm}
+%\end{minipage}
+%}
+
+% por conta de alguns exemplos
+%\usepackage{setspace}
+
+%##################################################
+
+% se vc já defendeu e tem o arquivo escaneado da folha de rosto, 
+% descomente e altere o nome do arquivo
+%\folhaAprovacaoAssinada{folharosto}
+
+% Aqui começa o documento propriamente dito
+\begin{document}
+
+\maketitle
+
+%\dedic{Espaço reservado a dedicatória.}     % Dedicatórias\\
+
+%\thanks{Espaço reservado aos agradecimentos.}         % Agradecimentos
+
+%\epigrafe{ % citação opcional
+
+% palavras-chave
+\keywords{Natural Language. Model Generation. Test Model. Requirement Document. Information Extraction. State Model. State Machine. Automaton Test. Automaton Generation.}
+\resumo{Ao logo dos anos, tem sido percebido o aumento no número de empresas da área de tecnologia da informação que passaram a considerar a importância dos processos de testes de software como meio de aumento da qualidade dos produtos finais e redução de problemas decorrentes de falhas humanas e/ou falhas inerentes ao processo de desenvolvimento de sistemas computacionais.
+
+Para tal questão, expandiu-se nos últimos anos a quantidade de ferramentas que auxiliam as empresas nesse processo, dentre as quais, podem ser citadas as ferramentas capazes de interpretar documentos de requisitos em língua natural estruturada, objetivando a geração de modelos de teste de forma mais mecanizada e automática. Várias pesquisas já foram publicadas a esse respeito, sendo a grande maioria para documentos de requisitos em língua inglesa.
+
+O atual cenário de ferramentas dessa natureza demonstra que existem poucas opções disponíveis no mercado, sendo a grande maioria fruto de pesquisas acadêmicas e que ainda não foram amplamente divulgadas e disponibilizadas. Outro fator que dificulta o acesso às ferramentas é o idioma em que os documentos são expressos.
+
+Esta pesquisa teve como objetivo a identificação e  análise das soluções já existentes, buscando identificar a viabilidade de sua aplicação para o idioma português e os resultados dessa aplicação. Tal processo de análise envolveu revisões da literatura e testes práticos com ferramentas de Processamento de Línguas Naturais (PLN).
+
+Durante o desenvolvimento da pesquisa foi identificado que as técnicas de etiquetação e análise sintática são essenciais e, por não existirem muitas opções de ferramentas gratuitas para o tratamento da língua portuguesa, estão sendo analisadas as possibilidades de desenvolvimento de ferramentas próprias ou a adoção de ferramentas que façam o tratamento parcial das informações. Foram selecionados trabalhos relevantes, que servirão de inspiração para o desenvolvimento de uma ferramenta para automatização da geração de modelos de teste para a língua portuguesa. 
+
+Como resultado da pesquisa desenvolvida até o momento, pode-se perceber que é viável a construção de uma ferramenta dessa natureza para documentos em língua portuguesa e que, sendo desenvolvida seguindo a filosofia do software livre, esta poderia auxiliar empresas de pequeno e médio porte, que também sofrem com problemas na produção de sistemas computacionais, e que podem ter menos capital para investimento em processos de teste eficientes e eficazes.}  % Resumo (digite aqui o resumo)
+
+% keywords devem vir antes do abstract
+\keywords{Natural Language. Model Generation. Test Model. Requirement Document. Information Extraction. State Model. State Machine. Automaton Test. Automaton Generation.} % keywords
+\abstract{At the turn of the century, it has been noticed the increase in the number of companies in the area of information technology that have come to consider the importance of software testing processes as a means of increasing the quality of the final products and reducing problems arising from human and / or failures inherent to the process of development of computational systems.
+
+To this end, the number of tools that help companies in this process has expanded in recent years, among which, the tools capable of interpreting requirements documents in a structured natural language can be cited, aiming the generation of test models in a way more mechanized and automatic. Several researches have already been published on this subject, most of which are for English language requirements documents.
+
+The current scenario of tools of this nature shows that there are few options available in the market, most of which are the result of academic research and have not yet been widely disseminated and made available. Another factor that hinders access to tools is the language in which documents are expressed.
+
+The objective of this research was to identify and analyze the existing solutions, seeking to identify the feasibility of its application to the Portuguese language and the results of this application. This analysis process involved literature reviews and practical tests with Natural Language Processing (PLN) tools.
+
+During the development of the research it was identified that the techniques of tagging and syntactic analysis are essential and, because there are not many free tool options for the treatment of the Portuguese language, the possibilities of developing own tools or the adoption of tools that partial treatment of the information. Relevant works were selected, which will serve as inspiration for the development of a tool for automating the generation of test models for the Portuguese language.
+
+As a result of the research developed so far, one can see that it is feasible to construct such a tool for documents in Portuguese language and that, being developed following the philosophy of free software, this could help small and medium-sized companies, who also suffer from problems in the production of computer systems, and which may have less capital to invest in efficient and effective testing processes.}
+
+%##################################################
+
+% Dados do guia
+%\begin{titlepage}
+%\pagestyle{empty}
+%\renewcommand{\baselinestretch}{1}
+%\enlargethispage{1.5cm}
+%\input{reitoria}
+%\cleardoublepage
+%\end{titlepage}
+
+%##################################################
+
+% descomente para habilitar a lista desejada
+\listoffigures                             % Lista de Figuras
+%\listofilustracoes
+%\listofgraficos							   % Lista de Gráficos
+\listoftables                              % Lista de Tabelas
+\listofquadros							   % Lista de Quadros
+%\listofexemplos
+%\listofteoremas
+\tableofcontents                           % Sumário
+
+\clearpage
+
+\pagestyle{ufla}
+
+%==============================================================================
+% incluindo os capitulos
+\include{introducao}
+\include{referencial_teorico}
+\include{metodologias_analise}
+\include{resultados}
+\include{conclusao}
+%\include{elementos}
+
+%==============================================================================
+% Incluindo bibliografia
+%\bibliographystyle{plain}             % estilo para labels em numeros
+%\bibliographystyle{alpha}             % estilo para labels em iniciais
+\bibliographystyle{abntex2-alf}           % estilo para referências usando ABNT, 
+                                       % precisa instalar o abntex para usar!!!
+
+%inclui Referências Bibliográficas
+%inclui Referências Bibliográficas
+\referencias
+\bibliography{refbib}			% arquivo exemplo refbib.bib
+%==============================================================================
+% Incluindo anexos num1erados com letras maiusculas.
+%\apendices
+%\include{apendice1}
+
+
+%==============================================================================
+% Fim do texto
+\end{document}
